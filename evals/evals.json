@@ -1,0 +1,76 @@
+{
+  "skill": "metro-ui",
+  "pass_threshold": {
+    "spec_check": "PASS or <=1 band within 2 CSS px, no missing/extra bands",
+    "audit": "clean"
+  },
+  "viewport_css_px": [
+    360,
+    664
+  ],
+  "capture": "sh scripts/capture.sh <page.html> <out.png> 360 664 4",
+  "cases": [
+    {
+      "id": "settings-display",
+      "brief": "evals/briefs/settings-display.md",
+      "spec": "evals/specs/settings-display.json",
+      "tests": [
+        "switch rows stay one line",
+        "slider",
+        "outlined pickers"
+      ]
+    },
+    {
+      "id": "settings-wifi",
+      "brief": "evals/briefs/settings-wifi.md",
+      "spec": "evals/specs/settings-wifi.json",
+      "tests": [
+        "mixed-case title kept as typed",
+        "switch pitch 66"
+      ]
+    },
+    {
+      "id": "phone-history",
+      "brief": "evals/briefs/phone-history.md",
+      "spec": "evals/specs/phone-history.json",
+      "tests": [
+        "pivot with dimmed next title",
+        "call row pitch 62",
+        "accent status text"
+      ]
+    },
+    {
+      "id": "messages-threads",
+      "brief": "evals/briefs/messages-threads.md",
+      "spec": "evals/specs/messages-threads.json",
+      "tests": [
+        "round add button",
+        "ellipsised preview",
+        "thread pitch 64"
+      ]
+    },
+    {
+      "id": "settings-main",
+      "brief": "evals/briefs/settings-main.md",
+      "spec": "evals/specs/settings-main.json",
+      "tests": [
+        "pivot header",
+        "entry pitch 59",
+        "clipped final row"
+      ]
+    },
+    {
+      "id": "phone-keypad",
+      "brief": "evals/briefs/phone-keypad.md",
+      "spec": "evals/specs/phone-keypad.json",
+      "tests": [
+        "full-bleed key grid",
+        "digit/letter pairing",
+        "outlined buttons"
+      ],
+      "tol": 3.5,
+      "note": "title glyph run is about 3.8 pt wider than the measured one (kerning); run spec_check.py --tol 3.5"
+    }
+  ],
+  "method": "Give a fresh agent only SKILL.md's folder and the brief (never the spec). Capture, run scripts/audit.py and scripts/spec_check.py, record the score, patch the skill where the agent was misled, repeat with a different case."
+}

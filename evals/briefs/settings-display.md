@@ -1,0 +1,1 @@
+Build a Windows Phone 8.1 Settings page (page-only viewport 360x664). App name SETTINGS, title "display". A slider "Screen brightness" at 50%; switch row "Automatically adjust brightness" (Off); switch row "OpenTone" (Off); pickers "Screen times out after" = "1 minute", "Display scaling" = "4.0x (Standard S9)", "Navigation bar widget size" = "Standard (48 pt)". Default accent.

@@ -1,0 +1,151 @@
+/* metro.css - Windows Phone 8.1 kit. 1 CSS px = 1 pt. Reference screen 360x740 (capture at DSF 4).
+   Numbers come from the measured data in references/*.md. Square corners, no shadows, no gradients. */
+@font-face{font-family:"Selawik";font-weight:300;ascent-override:107.9%;descent-override:25.1%;line-gap-override:0%;src:local("Segoe UI Light"),url(fonts/selawkl.ttf)}
+@font-face{font-family:"Selawik";font-weight:350;ascent-override:107.9%;descent-override:25.1%;line-gap-override:0%;src:local("Segoe UI Semilight"),url(fonts/selawksl.ttf)}
+@font-face{font-family:"Selawik";font-weight:400;ascent-override:107.9%;descent-override:25.1%;line-gap-override:0%;src:local("Segoe UI"),url(fonts/selawk.ttf)}
+@font-face{font-family:"Selawik";font-weight:600;ascent-override:107.9%;descent-override:25.1%;line-gap-override:0%;src:local("Segoe UI Semibold"),url(fonts/selawksb.ttf)}
+
+:root{
+  --accent:#0050EF; --bg:#000; --fg:#fff; --grey:#999; --dim:#616161;
+  --track:#383838; --off:#333; --tile:#212121; --bar:#1F1F1F; --key:#333; --idle:#C7C7C7;
+  --red:#E51400; --amber:#F0A30A; --margin:16px;
+  --font:"Segoe UI","Selawik","Segoe WP",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;box-shadow:none;-webkit-tap-highlight-color:transparent}
+html,body{background:#000;color:#fff;font-family:var(--font);font-weight:400;line-height:normal;overflow:hidden}
+.m-screen{position:relative;width:360px;height:740px;background:#000;overflow:hidden}
+.m-status{position:absolute;left:0;top:0;width:360px;height:28px;font-size:14.95px;padding:5px 14px 0}
+.m-status .r{position:absolute;right:14px;top:5px}
+.m-app{position:absolute;left:0;top:28px;width:360px;height:672px;overflow:hidden}
+.m-nav{position:absolute;left:0;top:700px;width:360px;height:40px;display:flex;justify-content:space-around;align-items:center;font-weight:350;font-size:17px}
+
+/* header: caps line top 14 (11.5 semibold), title top 24 (48 semilight, x13); content starts at 108 */
+.m-caps{position:absolute;left:16px;top:14px;font-size:11.5px;font-weight:600;text-transform:uppercase}
+.m-title{position:absolute;left:13px;top:24px;font-size:48px;font-weight:350;white-space:nowrap}
+.m-title .next{color:var(--dim);margin-left:16px}
+.m-body{position:absolute;left:0;top:108px;width:360px}
+.m-body>*{position:relative}
+
+/* text primitives */
+.m-caption{font-size:13px;color:var(--grey);height:18px}
+.m-value{font-size:16px}
+.m-pair .m-caption{height:18px}.m-pair .v{font-size:19px;font-weight:350;height:26px}
+.m-field{padding:0 16px 14px}.m-field .m-value{min-height:20px}
+.m-pair{padding:0 16px 12px}
+
+/* entry: pitch 59 */
+.m-entry{height:59px;padding:0 16px}
+.m-entry .t{font-size:25.5px;font-weight:350;height:31px}
+.m-entry .d{font-size:12px;color:var(--grey);}
+/* switch row: pitch 66, toggle 54x24 at right:16, top:4 */
+.m-switch{height:66px;padding:0 16px}
+.m-switch .t{font-size:21px;font-weight:350;height:26px;white-space:nowrap}
+.m-switch .s{font-size:13px;color:var(--grey)}
+.m-toggle{position:absolute;right:16px;top:4px;width:54px;height:24px;border:2px solid #fff}
+.m-toggle::before{content:"";position:absolute;left:2px;top:2px;width:46px;height:16px;background:var(--off)}
+.m-toggle.on::before{background:var(--accent)}
+.m-toggle::after{content:"";position:absolute;top:-3px;left:-1px;width:12px;height:26px;background:#fff}
+.m-toggle.on::after{left:39px}
+/* textbox: caption 13 (advance 22), box 38, after 16 */
+.m-textbox{padding:0 16px 16px}.m-textbox .m-caption{height:22px}
+.m-textbox .box{height:38px;background:var(--idle);color:#000;font-size:17px;padding:8px 8px 0}
+.m-textbox .box.focus{background:#fff}
+/* picker: caption 15 (advance 24), row 40 outlined 2px, after 18 */
+.m-picker{padding:0 16px 18px}.m-picker .m-caption{font-size:15px;height:24px}
+.m-picker .box{height:40px;border:2px solid #fff;font-size:17px;padding:7px 10px 0}
+/* button: 40 high, 2px outline, label 14.5 */
+.m-button{display:inline-block;height:40px;min-width:100px;border:2px solid #fff;font-size:14.5px;text-align:center;padding:9px 16px 0;margin:0 16px 12px 0}
+.m-button.accent{background:var(--accent);border-color:var(--accent)}
+/* slider: track y+24 h4 #383838, fill accent, thumb 10x18 */
+.m-slider{height:62px;padding:0 16px}.m-slider .track{position:absolute;left:16px;right:16px;top:24px;height:4px;background:var(--track)}
+.m-slider .fill{position:absolute;left:0;top:0;height:4px;background:var(--accent)}
+.m-slider .thumb{position:absolute;top:-7px;width:10px;height:18px;background:#fff}
+.m-slider .pct{position:absolute;right:16px;top:0;font-size:14px;font-weight:600}
+/* round button: 44 ring 2.2, label 11.5 */
+.m-round{display:inline-block;width:68px;height:74px;text-align:center;font-size:11.5px}
+.m-round .ring{width:44px;height:44px;margin:0 auto 3px;border:2.2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.m-round.press .ring{background:var(--accent);border-color:var(--accent)}
+/* checkbox 22 */
+.m-check{display:inline-block;width:22px;height:22px;border:2px solid #fff}.m-check.on{background:#fff}
+
+/* tiles: 6 units, gutter 7, margin 14, medium 106, wide 219x106, label bottom-left 13 */
+.m-start{position:absolute;left:14px;top:14px;width:332px;height:640px}
+.m-tile{position:absolute;background:var(--accent);overflow:hidden}
+.m-tile.small{width:49.5px;height:49.5px}.m-tile.medium{width:106px;height:106px}.m-tile.wide{width:219px;height:106px}
+.m-tile .g{position:absolute;left:0;right:0;top:0;height:44%;display:flex;align-items:center;justify-content:center;font-size:40px}
+.m-tile.medium .g{height:88%;font-size:48px}.m-tile.wide .g{width:106px;right:auto;height:88%;font-size:48px}
+.m-tile .l{position:absolute;left:8px;bottom:8px;font-size:13px;}
+.m-tile .n{position:absolute;right:8px;top:4px;font-size:22px;font-weight:350}
+.m-tile.small .l{display:none}
+.m-tile.press{transform:perspective(500px) rotateX(10deg) scale(.96)}
+
+/* app list */
+.m-applist{position:absolute;left:0;top:17px;width:360px}
+.m-appr{position:absolute;left:80px;width:280px;height:45px}
+.m-appr .ic{position:absolute;left:0;top:0;width:45px;height:45px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:25px}
+.m-appr .nm{position:absolute;left:58px;top:7px;font-size:22px;font-weight:350;white-space:nowrap}
+.m-appr.letter .ic{background:none;border:1.5px solid var(--accent);color:var(--accent);font-size:27px;font-weight:350}
+
+/* app bar 80 / menu / dialog / toast */
+.m-appbar{position:absolute;left:0;bottom:0;width:360px;height:80px;background:var(--bar);display:flex;justify-content:center;gap:0;padding-top:6px}
+.m-menu{position:absolute;inset:0;background:rgba(0,0,0,.72);padding:16px}.m-menu .row{height:50px;font-size:24px;font-weight:350;}
+.m-dialog{position:absolute;left:0;top:0;width:360px;background:var(--bar);padding:40px 24px 20px}
+.m-dialog h2{font-size:20px;font-weight:600;margin-bottom:12px}.m-dialog p{font-size:15px;margin-bottom:24px}
+.m-toast{position:absolute;left:0;top:0;width:360px;height:58px;background:var(--accent);padding:8px 16px}
+.m-toast b{display:block;font-size:15px;font-weight:600}.m-toast span{font-size:13px}
+
+/* action center strip + notifications */
+.m-shade{position:absolute;left:0;top:0;width:360px;background:rgba(0,0,0,.96)}
+.m-qa{display:flex;gap:3px;padding:3px 4px 0 4px}
+.m-qa .q{flex:1;height:calc((360px - 17px)/4*.66);background:var(--bar);font-size:7.6px;font-weight:600;padding:4px;text-align:left}
+.m-qa .q.on{background:var(--accent)}
+.m-note{padding:12px 16px}.m-note .t{font-size:14.5px;font-weight:600}.m-note .b{font-size:13.5px;color:var(--grey)}
+
+/* keyboard: key 56 tall gap 3 */
+.m-kbd{position:absolute;left:0;bottom:0;width:360px;height:227px;padding:3px 0 0 3px}
+.m-kbd .row{display:flex;gap:3px;margin-bottom:3px}.m-kbd .k{flex:1;height:56px;background:var(--key);text-align:center;font-size:20px;}
+.m-kbd .k.f{background:var(--bar)}.m-kbd .k.press{background:var(--accent)}
+
+/* lock screen */
+.m-lock .clock{position:absolute;left:16px;bottom:268px;font-size:92px;font-weight:300;}
+.m-lock .day{position:absolute;left:16px;bottom:156px;font-size:30px}
+.m-lock .date{position:absolute;left:16px;bottom:120px;font-size:30px;color:var(--grey)}
+
+/* motion */
+@keyframes m-turn-in{from{transform:perspective(600px) rotateY(80deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes m-turn-out{to{transform:perspective(600px) rotateY(-50deg);opacity:0}}
+.m-row-in{animation:m-turn-in 180ms cubic-bezier(.1,.9,.2,1) both}
+.m-row-out{animation:m-turn-out 128ms ease-in both}
+
+/* page-only viewport (spec comparison: 360x664) */
+.m-page{position:relative;width:360px;height:664px;background:#000;overflow:hidden}
+
+/* ---- lists (call history / threads / people): rows are absolutely stacked at a fixed pitch ---- */
+.m-list{position:relative}
+.m-call{position:relative;height:62px}.m-call .ico{position:absolute;left:16px;top:2px;width:44px;height:44px}
+.m-call .nm{position:absolute;left:74px;top:0;font-size:24px;font-weight:350;white-space:nowrap}
+.m-call .when{position:absolute;right:16px;top:6px;font-size:13px;color:var(--grey)}
+.m-call .det{position:absolute;left:74px;top:31px;font-size:12.5px;color:var(--grey);white-space:nowrap}
+.m-thread{position:relative;height:64px}.m-thread .nm{position:absolute;left:16px;top:0;font-size:24px;font-weight:350;white-space:nowrap}
+.m-thread .when{position:absolute;right:16px;top:12px;font-size:12.5px;color:var(--grey)}
+.m-thread .det{position:absolute;left:16px;right:16px;top:31px;font-size:13.5px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-call .det.hot,.m-thread .det.hot,.hot{color:var(--accent)}
+/* full-width action bar (e.g. "keypad"): #212121, 44 high, label 15 */
+.m-bar{position:relative;margin:0 16px;height:44px;background:var(--tile);font-size:15px;padding:12px 0 0 46px}
+.m-dot{display:block;position:absolute;width:3.2px;height:3.2px;background:#fff;border-radius:50%} /* the only legal round shapes: dots and rings */
+/* two-line switch row (title wraps at 264): add .wrap */
+.m-switch.wrap{height:92px}.m-switch.wrap .t{white-space:normal;max-width:264px;height:auto}
+/* variant used by the display page: toggle sits 2 pt lower */
+.m-switch.lo .m-toggle{top:6px}
+
+/* ---- dialler keypad: full-bleed 3x4 grid, keys #333, 2 pt gaps, 84 pt tall ---- */
+.m-num{position:absolute;left:16px;top:85px;font-size:42px;font-weight:300;white-space:nowrap}
+.m-who{position:absolute;left:16px;top:136.5px;font-size:13.5px;color:var(--accent)}
+.m-keypad{position:absolute;left:0;top:250px;width:360px;height:342px}
+.m-key{position:absolute;width:118.67px;height:84px;background:var(--key)}
+.m-key b{position:absolute;left:0;right:0;top:6px;text-align:center;font-size:40px;font-weight:300}
+.m-key i{position:absolute;left:0;right:0;top:60px;text-align:center;font-size:12px;font-style:normal;font-weight:600;color:#D9D9D9}
+.m-key:nth-child(3n+2){left:120.67px}.m-key:nth-child(3n){left:241.34px}
+.m-key:nth-child(n+4){top:86px}.m-key:nth-child(n+7){top:172px}.m-key:nth-child(n+10){top:258px}
+/* outlined phone-style buttons: 1.5 pt #666 stroke, 46 tall, two across */
+.m-obtn{position:absolute;width:159px;height:46px;border:1.5px solid #666;text-align:center;font-size:16px;color:#EBEBEB;padding-top:10px}
